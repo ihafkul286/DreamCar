@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DreamCar</string>
+    <string name="title_activity_cars">Cars</string>
+    <string name="title_activity_car">CarActivity</string>
+    <string name="more_content_desc">icon\n</string>
+    <string name="title_activity_elem_list">ElemListActivity</string>
+    <string name="title_activity_detail_item">DetailItemActivity</string>
+</resources>

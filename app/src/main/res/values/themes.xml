@@ -1,0 +1,14 @@
+<!-- res/values/themes.xml -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.DreamCar.Splash" parent="Theme.DreamCar.Splash" tools:ignore="ResourceCycle">
+        <item name="android:windowBackground">@drawable/porshe</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:ignore="NewApi">1000</item>
+        <item name="android:windowSplashScreenBackground" tools:ignore="NewApi">@color/black</item>
+    </style>
+
+    <style name="Theme.DreamCar.NoActionBar" parent="Theme.DreamCar.Splash">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>
