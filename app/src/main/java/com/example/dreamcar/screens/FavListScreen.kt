@@ -1,5 +1,6 @@
 package com.example.dreamcar.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -7,28 +8,44 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Delete
-import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.dreamcar.R
 import com.example.dreamcar.activity.Datasource
+import com.example.dreamcar.ui.components.ConfirmDeleteDialog
 
 
-@OptIn(ExperimentalMaterial3Api::class) // Anotación para usar funciones experimentales
+@SuppressLint("RememberReturnType")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavListScreen() {
-    val favoriteCars = Datasource.carList()
+fun FavListScreen(onFavoriteClick: Any) {
+    val favoriteCars = remember { mutableStateListOf(*Datasource.carList().toTypedArray()) }
+    var showDialog by remember { mutableStateOf(false) }
+    var carNameSelected by remember { mutableStateOf("") }
+
+    if (showDialog) {
+        ConfirmDeleteDialog(
+            carName = carNameSelected,
+            onCancel = { showDialog = false },
+            onConfirm = {
+                favoriteCars.removeIf { it.brand + " " + it.model == carNameSelected }
+                showDialog = false
+            }
+        )
+    }
 
     Scaffold(
         topBar = {
-            // Usando el TopAppBar con colores experimentales
             TopAppBar(
                 title = { Text("Favourite Cars") },
                 colors = TopAppBarDefaults.largeTopAppBarColors(
@@ -80,7 +97,10 @@ fun FavListScreen() {
                                     modifier = Modifier.weight(1f)
                                 )
                                 IconButton(
-                                    onClick = { },
+                                    onClick = {
+                                        carNameSelected = "${car.brand} ${car.model}"
+                                        showDialog = true
+                                    },
                                     modifier = Modifier.size(32.dp)
                                 ) {
                                     Icon(
@@ -97,8 +117,6 @@ fun FavListScreen() {
         }
     }
 }
-
-
 
 
 

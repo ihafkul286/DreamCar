@@ -1,23 +1,24 @@
 package com.example.dreamcar.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.dreamcar.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen() {
+
+    var isLogin by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -35,7 +36,7 @@ fun ProfileScreen() {
                 .padding(paddingValues)
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+            verticalArrangement = Arrangement.Center
         ) {
             IconButton(
                 onClick = {  },
@@ -62,13 +63,16 @@ fun ProfileScreen() {
             )
 
             Button(
-                onClick = {  },
+                onClick = {
+                    isLogin = !isLogin
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF607D8B),
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "Login / Logout")
+                Text(
+                    if (isLogin) "Logout" else "Login")
             }
         }
     }

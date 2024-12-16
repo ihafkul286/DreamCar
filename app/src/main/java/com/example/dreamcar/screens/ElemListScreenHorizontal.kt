@@ -10,6 +10,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -27,7 +31,12 @@ import com.example.ui.theme.displayFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ElemListScreenHorizontal() {
+fun ElemListScreenHorizontal(
+    onFavoritesClick: () -> Unit,
+    onElementClick: (String) -> Unit,
+    onProfileClick: () -> Unit,
+    onAboutClick: () -> Unit
+) {
     val typography = Typography(
         bodyLarge = TextStyle(
             fontFamily = bodyFontFamily,
@@ -56,15 +65,18 @@ fun ElemListScreenHorizontal() {
                     .padding(paddingValues)
             ) {
                 items(carList) { car ->
-                    CarCard(car)
+                    CarCard(car = car, isLandscape = false, onElementClick = onElementClick)
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun CarCard(car: Car, isLandscape: Boolean) {
+fun CarCard(car: Car, isLandscape: Boolean, onElementClick: (String) -> Unit) {
+
+    var isFavorite by remember { mutableStateOf(false) }
     val cardModifier = if (isLandscape) {
         Modifier.fillMaxWidth(0.6f)
     } else {
@@ -118,13 +130,15 @@ fun CarCard(car: Car, isLandscape: Boolean) {
                             style = MaterialTheme.typography.bodyLarge,
                         )
                         IconButton(
-                            onClick = { },
+                            onClick = {
+                                isFavorite = !isFavorite
+                            }, // Llamar a onElementClick con el nombre del coche
                             modifier = Modifier.size(50.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.TwoTone.Favorite,
                                 contentDescription = "Favorito",
-                                tint = MaterialTheme.colorScheme.primary
+                                tint = if (isFavorite) Color.Red else Color.White
                             )
                         }
                     }
@@ -133,3 +147,4 @@ fun CarCard(car: Car, isLandscape: Boolean) {
         }
     }
 }
+

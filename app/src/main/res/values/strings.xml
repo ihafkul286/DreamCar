@@ -5,4 +5,8 @@
     <string name="more_content_desc">icon\n</string>
     <string name="title_activity_elem_list">ElemListActivity</string>
     <string name="title_activity_detail_item">DetailItemActivity</string>
+    <string name="delete_car">Delete the car</string>
+    <string name="delete_car_confirmation">Are you sure that you want delete the car?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>
