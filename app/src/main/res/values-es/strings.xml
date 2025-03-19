@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DreamCar</string>
+    <string name="title_activity_cars">Coches</string>
+    <string name="title_activity_car">ActividadCoche</string>
+    <string name="more_content_desc">Icóno</string>
+    <string name="title_activity_elem_list">ListaDeCoches</string>
+    <string name="title_activity_detail_item">ListaDeDetallesDeLosCoches</string>
+    <string name="delete_car">Borrar el coche</string>
+    <string name="delete_car_confirmation">¿Estas seguro que quieres borrar el coche?</string>
+    <string name="delete">Borrar</string>
+    <string name="cancel">Cancelar</string>
+</resources>

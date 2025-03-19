@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,14 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DreamCar.Splash"
-        tools:targetApi="31">
+        android:name=".applicationrelease.DragonBallReleaseApplication"
+        tools:targetApi="31"
+        tools:ignore="MissingClass">
+
         <activity
-            android:name=".activity.DetailItemActivity"
-            android:exported="false"
-            android:label="@string/title_activity_detail_item"
-            android:theme="@style/Theme.DreamCar.Splash" />
-        <activity
-            android:name=".activity.ElemListActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_elem_list"
             android:theme="@style/Theme.DreamCar.Splash">
@@ -28,11 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_car"
-            android:theme="@style/Theme.DreamCar.Splash"></activity>
+
     </application>
 
 </manifest>
